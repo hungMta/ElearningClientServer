@@ -3,6 +3,7 @@ var db = require('../../../database/dbconnection');
 var con = db.connection();
 
 exports.coursesList = (req,res)=>{
+    console.log("courses list");
     course.getCoursesList(con,function(err,rows){
         console.log(rows);
         if(!err){

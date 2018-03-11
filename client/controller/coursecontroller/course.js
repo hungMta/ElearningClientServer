@@ -1,13 +1,14 @@
 var constants = require('../../../config/constant')
 
-var getCoursesList = function(con,callback){
-    con.query(constants.SELECT_ALL_COURSE,function(err,rows,fields){
+var getCoursesList = function (con, callback) {
+    con.query(constants.SELECT_ALL_COURSE, function (err, rows, fields) {
         try {
-        if(err) throw err;
-        console.log("call back");
-        callback(err,rows);
+            console.log("query");
+            if (err) console.log(err);
+            callback(err, rows);
         } catch (error) {
-        } 
+            console.log("cacth======================");
+        }
     })
 }
 
