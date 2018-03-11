@@ -9,7 +9,7 @@ app.use(bodyParser.json({extended:false}))
 
 app.get('/courses',courseController.coursesList);
 
-var server = app.listen(PORT,function(){
+var server = app.listen(5000,function(){
     var host = server.address().host;
     var port = server.address().port;
 
