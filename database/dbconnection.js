@@ -9,7 +9,7 @@ exports.connection = function(){
                 console.log(err);
                 console.log('Database is connected!');
             } else {
-                console.log('Error connecting database!');
+                console.log(err);
             }
         });
     }
