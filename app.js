@@ -1,7 +1,7 @@
 var express = require('./lib/node_modules/express');
 var bodyParser = require('./lib/node_modules/body-parser');
 
-var courseController = require('./controller/coursecontroller/courseController');
+var courseController = require('./client/controller/coursecontroller/courseController');
 
 var app = express();
 app.use(bodyParser.urlencoded({extended:false}));
