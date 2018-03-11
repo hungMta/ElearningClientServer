@@ -5,6 +5,10 @@ var con = db.connection();
 exports.coursesList = (req,res)=>{
     course.getCoursesList(con,function(err,rows){
         console.log(rows);
-        res.json(rows);
+        if(!err){
+        res.json(rows);}
+        else{
+            res.status(500).send("Oh uh, something went wrong");
+        }
     });
 }
