@@ -7,7 +7,6 @@ var getCoursesList = function(con,callback){
         console.log("call back");
         callback(err,rows);
         } catch (error) {
-            callback(error,null);
         } 
     })
 }
