@@ -11,7 +11,7 @@ exports.coursesList = (req, res) => {
             res.json(rows);
         }
         else {
-            console.log(err)
+            console.log(err);
             res.status(500).json(new error.MyError(500, constant.INTERNAL_SERVER_ERROR,err));
         }
     });
