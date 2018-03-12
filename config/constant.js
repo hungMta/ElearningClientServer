@@ -9,3 +9,4 @@ module.exports = Object.freeze({
     USER_EXISTS: 'User exists',
     REGISTERD_SUCCESSFULLY: 'Registerd successfully'
 });
+

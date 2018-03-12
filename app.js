@@ -12,7 +12,7 @@ app.get('/courses',courseController.coursesList);
 app.post('/login',userController.login);
 app.post('/register',userController.register);
 
-var server = app.listen(5000,function(){
+var server = app.listen(PORT,function(){
     var host = server.address().host;
     var port = server.address().port;
 
