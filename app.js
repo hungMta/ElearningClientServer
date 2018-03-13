@@ -15,6 +15,7 @@ app.get('/courses',courseController.coursesList);
 app.post('/login',userController.login);
 app.post('/register',userController.register);
 app.get('/my_courses',courseController.myCourse);
+app.get('/user_info',userController.userInfo);
 
 //admin
 

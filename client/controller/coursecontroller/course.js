@@ -19,7 +19,7 @@ exports.courseDetail = (con,idcourse, callback) => {
     })
 }
 
-exports.myALLCourse = (con,iduser,callback)=>{
+exports.allMyCourse = (con,iduser,callback)=>{
     var query = "select my_course_lesson.iduser,my_course_lesson.idcourse,my_course_lesson.name,my_course_lesson.image,my_course_lesson.total, COALESCE(my_all_pathway.learned,0)as learned "
     +"from (select my_course.iduser,my_course.idcourse,my_course.name,my_course.image, course_lesson.total "
     +"from (select myEnroll.iduser,myEnroll.idcourse,course.name,course.image "
