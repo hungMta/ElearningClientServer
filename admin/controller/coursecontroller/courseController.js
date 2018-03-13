@@ -1,5 +1,5 @@
 var course = require('./course')
-var db = require('../../../database/dbconnection.js');
+var db = require('../../../database/dbconnectio.js');
 var con = db.connection();
 
 exports.coursesList = (req,res)=>{

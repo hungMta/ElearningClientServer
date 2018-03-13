@@ -1,6 +1,7 @@
 {
-    "host": "sql12.freemysqlhosting.net",
-    "user": "sql12225900",
-    "password": "QMZv8FsWb9",
-    "database": "sql12225900"
+    "host": "127.0.0.1",
+    "user": "root",
+    "password": "thuanenvity",
+    "database": "elearning"
 }
+
