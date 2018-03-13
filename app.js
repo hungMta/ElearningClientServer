@@ -8,9 +8,15 @@ var app = express();
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json({extended:false}))
 
+
+
+// client
 app.get('/courses',courseController.coursesList);
 app.post('/login',userController.login);
 app.post('/register',userController.register);
+app.get('/courseDetail',courseController.courseDetail);
+
+//admin
 
 var server = app.listen(PORT,function(){
     var host = server.address().host;
