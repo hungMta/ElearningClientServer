@@ -17,18 +17,19 @@ exports.coursesList = (req, res) => {
     });
 }
 
-exports.courseDetail = (req,res) =>{
-    var idcourse = req.query.id_course;
+exports.myCourse = (req,res) =>{
+    // var idcourse = req.query.id_course;
     var iduser = req.query.id_user;
-    console.log("###### " + idcourse)
-    console.log("###### " + idcourse)
-    if(idcourse){
+    // console.log("###### " + idcourse)
+    console.log("###### myCourse")    
+    console.log("###### " + iduser)
+    // if(idcourse){
         if(iduser){
             // get my course detail
-            course.myCourseDetail(con,idcourse,iduser,(err,rows)=>{
+            course.myALLCourse(con,iduser,(err,rows)=>{
                 if(!err){
                     if(rows.length > 0 ){
-                        res.json(rows[0])
+                        res.json(rows)
                     }else{
                         res.status(401).json(new error.MyError(401, constant.COURSE_NOT_FOUND,err));            
                     }
@@ -50,7 +51,7 @@ exports.courseDetail = (req,res) =>{
                 }
             })
         }
-    }else{
-        res.status(401).json(new error.MyError(401, constant.COURSE_NOT_FOUND,null));
-    }
+    // }else{
+    //     res.status(401).json(new error.MyError(401, constant.COURSE_NOT_FOUND,null));
+    // }
 }
