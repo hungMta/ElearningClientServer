@@ -19,5 +19,8 @@
     "url": "https://github.com/hungMta/ElearningClientServer/issues"
   },
   "homepage": "https://github.com/hungMta/ElearningClientServer#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "pagination": "^0.4.4"
+  }
 }

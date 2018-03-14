@@ -2,14 +2,15 @@ var course = require('./course')
 var db = require('../../../database/dbconnection');
 var constant = require('../../../config/constant');
 var error = require('../../error');
-
+var pagination = require('../../Pagination');
 var con = db.connection();
 
 exports.coursesList = (req, res) => {
+    var page = req.query.page;
     console.log("courses list");
-    course.getCoursesList(con, function (err, rows) {
+    course.getCoursesList(con,page, function (err,total, rows) {
         if (!err) {
-            res.json(rows);
+            res.json(new pagination.Pagingation(total,constant.LIMIT,parseInt(page),rows));
         }
         else {
             console.log(err);
