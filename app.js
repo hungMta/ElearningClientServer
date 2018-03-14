@@ -1,17 +1,22 @@
 var express = require('./lib/node_modules/express');
 var bodyParser = require('./lib/node_modules/body-parser');
-var PORT = process.env.PORT || 5000
 var courseController = require('./client/controller/coursecontroller/courseController');
-var lessonController = require('./admin/controller/lessoncontroller');
+var lessonController = require('./admin/controller/lessoncontroller/lessoncontroller');
+var userController = require('./client/controller/usercontroller/userController');
+var PORT = process.env.PORT || 5000;
 
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ extended: false }))
 
-app.get('/courses', courseController.coursesList);
 
+// client
+app.get('/courses',courseController.coursesList);
+app.post('/login',userController.login);
+app.post('/register',userController.register);
+app.get('/courseDetail',courseController.courseDetail);
 
-app.get('/lessons', lessonController.lessonController);
+//app.get('/lessons', lessonController.lessonController);
 
 var server = app.listen(PORT, function () {
     var host = server.address().host;
