@@ -1,5 +1,5 @@
 function Lesson(lesson,wordlist){
+    lesson.words = wordlist
     this.lesson = lesson
-    this.wordlist = wordlist
 }
 exports.Lesson = Lesson
