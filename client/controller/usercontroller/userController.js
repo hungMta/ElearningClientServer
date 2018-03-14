@@ -46,3 +46,20 @@ exports.register = (req, res) => {
     });
 
 }
+
+exports.userInfo = (req,res) => {
+    var iduser = req.query.id_user
+    console.log("###### userInfo")    
+    console.log("###### " + iduser)
+    if(iduser){
+        user.userInfo(con,iduser,(err,rows)=>{
+            if (!err) {
+                res.json(rows[0]);
+            } else {
+                res.status(500).json(new error.MyError(500, constant.INTERNAL_SERVER_ERROR));
+            }
+        })
+    }else{
+        res.status(400).json(new error.MyError(400, constant.USER_NOT_FOUND))
+    }
+}

@@ -19,17 +19,20 @@ exports.courseDetail = (con,idcourse, callback) => {
     })
 }
 
-exports.myCourseDetail = (con,idcourse,iduser,callback)=>{
-    var query = "select t4.iduser,course.idcourse,course.name,course.description,course.image,t4.total,t4.learned from course  " 
-                +"inner join (select t2.iduser,t2.idcourse,t3.total,t2.learned "+ 
-                "from (select iduser,idcourse, count(iduser) learned "+
-                "from (select * from pathway where iduser = "+iduser+" and idcourse = "+idcourse+")t1 )t2 "+
-                "inner join  (select  idcourse, count(idcourse) total "+
-                "from (select * from lesson where idcourse = "+idcourse+")t2 ) t3 on t3.idcourse = t2.idcourse) t4 "
-                +"on course.idcourse = t4.idcourse"
+exports.allMyCourse = (con,iduser,callback)=>{
+    var query = "select my_course_lesson.iduser,my_course_lesson.idcourse,my_course_lesson.name,my_course_lesson.image,my_course_lesson.total, COALESCE(my_all_pathway.learned,0)as learned "
+    +"from (select my_course.iduser,my_course.idcourse,my_course.name,my_course.image, course_lesson.total "
+    +"from (select myEnroll.iduser,myEnroll.idcourse,course.name,course.image "
+    +"from (select * from enroll where iduser = "+iduser+") myEnroll "
+    +"inner join course on course.idcourse = myEnroll.idcourse ) my_course "
+    +"inner join (select lesson.idcourse, count(idcourse) total from lesson group by idcourse ) course_lesson "
+    +"on my_course.idcourse = course_lesson.idcourse) my_course_lesson "
+    +"left join (select my_pathway.idcourse, count(my_pathway.idcourse) learned "
+    +"from (select * from pathway where pathway.iduser = "+iduser+") my_pathway group by my_pathway.idcourse) my_all_pathway "
+    +"on my_course_lesson.idcourse = my_all_pathway.idcourse "
     console.log("##### " + query)
     con.query(query,(err,rows,fields) => {
-    if(err) console.log(err);
+    if(err) console.log("err ==== " + err);
     callback(err,rows);
     })
 }
