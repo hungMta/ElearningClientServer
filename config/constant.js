@@ -10,6 +10,11 @@ module.exports = Object.freeze({
     USER_EXISTS: 'User exists',
     REGISTERD_SUCCESSFULLY: 'Registerd successfully',
     COUNT_COURSE:'select count(*) count from course',
-    LIMIT:6
+    LIMIT:6,
+
+    //admin
+    SELECT_ALL_COURSE_ADMIN: 'SELECT * FROM sql12225900.course',
+    SELECT_ALL_LESSON_OF_COURSE: 'SELECT *FROM sql12225900.lesson WHERE idcourse =  '
 });
+
 
