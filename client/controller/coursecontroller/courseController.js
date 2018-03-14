@@ -1,8 +1,8 @@
 var course = require('./course')
 var db = require('../../../database/dbconnection');
 var constant = require('../../../config/constant');
-var error = require('../../error');
-var pagination = require('../../Pagination');
+var error = require('../../../entity/error');
+var pagination = require('../../../entity/Pagination');
 var con = db.connection();
 
 exports.coursesList = (req, res) => {
@@ -38,7 +38,7 @@ exports.myCourse = (req, res) => {
                 if (rows.length > 0) {
                     res.json(rows[0])
                 } else {
-                    res.status(401).json(new error.MyError(401, constant.COURSE_NOT_FOUND, err));
+                    res.status(404).json(new error.MyError(404, constant.COURSE_NOT_FOUND, err));
                 }
             } else {
                 res.status(500).json(new error.MyError(500, constant.INTERNAL_SERVER_ERROR, err));

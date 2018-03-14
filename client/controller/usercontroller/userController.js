@@ -1,6 +1,6 @@
 var user = require('./user');
 var db = require('../../../database/dbconnection');
-var error = require('../../error');
+var error = require('../../../entity/error');
 var con = db.connection();
 var constant = require('../../../config/constant');
 
@@ -10,7 +10,7 @@ exports.login = (req, res) => {
     user.login(con, email, password, (err, rows) => {
         if (!err) {
             if (rows.length == 0) {
-                res.status(401).json(new error.MyError(401, constant.USER_NOT_FOUND));
+                res.status(404).json(new error.MyError(404, constant.USER_NOT_FOUND));
             }
             if (rows.length > 0) {
                 res.json(rows[0]);
