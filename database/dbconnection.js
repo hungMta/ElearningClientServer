@@ -15,3 +15,10 @@ exports.connection = () => {
     }
     return db;
 }
+
+exports.queryDB = (con,query,callback)=>{
+    con.query(query, (err, rows, fields) => {
+        if (err) console.log("err ==== " + err);
+        callback(err, rows);
+    })
+}
