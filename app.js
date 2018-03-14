@@ -3,7 +3,6 @@ var bodyParser = require('./lib/node_modules/body-parser');
 var courseController = require('./client/controller/coursecontroller/courseController');
 var userController = require('./client/controller/usercontroller/userController');
 var PORT = process.env.PORT || 5000;
-
 var app = express();
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json({extended:false}))
