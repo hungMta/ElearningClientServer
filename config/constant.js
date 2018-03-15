@@ -13,7 +13,13 @@ module.exports = Object.freeze({
     LIMIT:6,
 
     SELECT_ALL_COURSES: 'SELECT * FROM sql12225900.course',
+
+    SELECT_ALL_WORD:'select * from word',
+    SELECT_ALL_LESSON:'select * from lesson',
+    // SELECT_ALL_COURSE: 'SELECT * FROM sql12225900.course',
+
     SELECT_ALL_LESSON_OF_COURSE: 'SELECT *FROM sql12225900.lesson WHERE idcourse =  ',
+    BAD_REQUEST:'Bad request',
 
 
 
