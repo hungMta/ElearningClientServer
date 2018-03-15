@@ -19,6 +19,7 @@ app.post('/register', userController.register);
 app.get('/my_courses', courseController.myCourse);
 app.get('/user_info', userController.userInfo);
 app.get('/lesson',lessonClientController.getLesson);
+app.get('/question',lessonClientController.getQuesion);
 app.post('/admin/login', adminController.login);
 
 //app.get('/lessons', lessonController.lessonController);
