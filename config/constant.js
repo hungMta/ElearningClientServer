@@ -11,9 +11,13 @@ module.exports = Object.freeze({
     REGISTERD_SUCCESSFULLY: 'Registerd successfully',
     COUNT_COURSE:'select count(*) count from course',
     LIMIT:6,
+
+    SELECT_ALL_COURSES: 'SELECT * FROM sql12225900.course',
+
     SELECT_ALL_WORD:'select * from word',
     SELECT_ALL_LESSON:'select * from lesson',
     // SELECT_ALL_COURSE: 'SELECT * FROM sql12225900.course',
+
     SELECT_ALL_LESSON_OF_COURSE: 'SELECT *FROM sql12225900.lesson WHERE idcourse =  ',
     BAD_REQUEST:'Bad request',
     SELECT_ALL_QUESTION:'select * from question',

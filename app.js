@@ -5,7 +5,8 @@ var lessonController = require('./admin/controller/lessoncontroller/lessoncontro
 var userController = require('./client/controller/usercontroller/userController');
 var lessonClientController  = require('./client/controller/lessoncontroller/lessonController');
 // admin
-var adminController = require('./admin/controller/admincontroller/admincontroller')
+var adminController = require('./admin/controller/admincontroller/admincontroller');
+var courseAdminController = require('./admin/controller/coursecontroller/courseController');
 var PORT = process.env.PORT || 5000;
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -22,6 +23,7 @@ app.get('/lesson',lessonClientController.getLesson);
 app.get('/question',lessonClientController.getQuesion);
 app.post('/admin/login', adminController.login);
 
+app.get('/admin/courses',courseAdminController.coursesList);
 //app.get('/lessons', lessonController.lessonController);
 
 
