@@ -12,7 +12,6 @@ module.exports = Object.freeze({
     COUNT_COURSE:'select count(*) count from course',
     LIMIT:6,
 
-    SELECT_ALL_COURSES: 'SELECT * FROM sql12225900.course',
 
     SELECT_ALL_WORD:'select * from word',
     SELECT_ALL_LESSON:'select * from lesson',
@@ -24,7 +23,22 @@ module.exports = Object.freeze({
 
 
     // admin
+
+    SELECT_ALL_USERS: 'SELECT *FROM sql12225900.user',
+    DELETE_USER: 'DELETE sql12225900.user WHERE iduser =',
+
+
+    SELECT_ALL_COURSES: 'SELECT * FROM sql12225900.course',
+    
     SELECT_ADMIN : 'SELECT *FROM sql12225900.admin',
-    ADMIN_NOT_FOUND: 'Admin not found!'
+    ADMIN_NOT_FOUND: 'Admin not found!',
+
+    INSERT_COURSE:'INSERT INTO  sql12225900.course(name,description,subcribers,image,totalTime) values',
+    UPDATE_COURSE:'UPDATE sql12225900.course SET',
+    DELETE_COURSE:'DELETE sql12225900.course WHERE',
+
+    DELETE_LESSON: 'DELETE sql12225900.lesson WHERE idlesson='
+
+
 });
 
