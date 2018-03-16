@@ -19,6 +19,20 @@ exports.coursesList = (req, res) => {
     });
 }
 
+exports.searchCourse = (req, res) => {
+    var page = req.query.page
+    var name = req.query.name
+    course.searchCourse(con,page,name, function (err,total, rows) {
+        if (!err) {
+            res.json(new pagination.Pagingation(total,constant.LIMIT,parseInt(page),rows));
+        }
+        else {
+            console.log(err);
+            res.status(500).json(new error.MyError(500, constant.INTERNAL_SERVER_ERROR, err));
+        }
+    });
+}
+
 exports.myCourse = (req, res) => {
     var iduser = req.query.id_user;
     console.log("###### myCourse")

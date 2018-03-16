@@ -8,6 +8,7 @@ var con = db.connection();
 exports.getLesson = (req, res) => {
     var idlesson = req.query.id_lesson
     console.log("### " + idlesson)
+    console.log("### " +  req.body)
     if(idlesson){
         lesson.getLessonDetail(con,idlesson,(err,rows)=>{
             if(!err){
