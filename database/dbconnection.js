@@ -17,6 +17,7 @@ exports.connection = () => {
 }
 
 exports.queryDB = (con, query, callback) => {
+    console.log("##### "+ query)
     con.query(query, (err, rows, fields) => {
         if (err) console.log("err ==== " + err);
         callback(err, rows);

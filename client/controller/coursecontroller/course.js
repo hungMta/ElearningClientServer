@@ -7,8 +7,7 @@ exports.getCoursesList = (con, page, callback) => {
         console.log('###### ' + row1)
         var offset = (page - 1) * constants.LIMIT;
         var query = constants.SELECT_ALL_COURSE + " limit " + constants.LIMIT + " offset " + offset
-        console.log("##### " + query)
-        db.queryDB(con,query,(err,rows)=>{
+        db.queryDB(con, query, (err, rows) => {
             callback(err, row1[0].count, rows);
         })
     })
@@ -16,8 +15,7 @@ exports.getCoursesList = (con, page, callback) => {
 
 exports.courseDetail = (con, idcourse, callback) => {
     var query = constants.SELECT_ALL_COURSE + " where course.idcourse = " + idcourse;
-    console.log("##### " + query)
-    db.queryDB(con,query,(err,rows)=>{
+    db.queryDB(con, query, (err, rows) => {
         callback(err, rows);
     })
 }
@@ -33,13 +31,23 @@ exports.allMyCourse = (con, iduser, callback) => {
         + "left join (select my_pathway.idcourse, count(my_pathway.idcourse) learned "
         + "from (select * from pathway where pathway.iduser = " + iduser + ") my_pathway group by my_pathway.idcourse) my_all_pathway "
         + "on my_course_lesson.idcourse = my_all_pathway.idcourse "
-    console.log("##### " + query)
-    db.queryDB(con,query,(err,rows)=>{
+    db.queryDB(con, query, (err, rows) => {
         callback(err, rows);
     })
 }
 
-exports.searchCourse = (con, name, callback) => {
-    var query = "";
-
+exports.searchCourse = (con, page, name, callback) => {
+    var query = ""
+    if (!page) {
+        query = constants.SELECT_ALL_COURSES + " where name like'%" + name + "%'";
+    } else {
+        offset = (page - 1) * constants.LIMIT;
+        query = constants.SELECT_ALL_COURSES + " where name like'%" + name + "%'" + " limit " + constants.LIMIT + " offset " + offset
+    }
+    db.queryDB(con,constants.COUNT_COURSE + " where name like'%" + name + "%'", (err, row1, fields) => {
+        if (err) callback(err, null)
+        db.queryDB(con, query, (err, rows) => {
+            callback(err, row1[0].count, rows);
+        })
+    })
 }
