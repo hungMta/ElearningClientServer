@@ -57,10 +57,37 @@ exports.courseDetail = (req, res) => {
         iduser = 0
     }
     course.courseDetail(con, iduser, idcourse, (err, rows) => {
-        if(!err){
+        if (!err) {
             res.json(rows)
-        }else{
+        } else {
             res.status(404).json(new error.MyError(404, constant.COURSE_NOT_FOUND, err));
+        }
+    })
+}
+
+exports.enrollCourse = (req, res) => {
+    console.log("enroll")
+    var idcourse = req.query.id_course
+    var iduser = req.query.id_user
+    course.enrollCourse(con, iduser, idcourse, (err, rows) => {
+        if (!err) {
+            var result = { "result": "" + constant.SUCCESS + ""};
+            res.json(result)
+        } else {
+            res.status(500).json(new error.MyError(404, constant.SOME_THING_WENT_WRONG, err));
+        }
+    })
+}
+
+exports.quitCourse = (req,res) => {
+    var idcourse = req.query.id_course
+    var iduser = req.query.id_user
+    course.quitCourse(con, iduser, idcourse, (err, rows) => {
+        if (!err) {
+            var result = { "result": "" + constant.SUCCESS + ""};
+            res.json(result)
+        } else {
+            res.status(500).json(new error.MyError(404, constant.SOME_THING_WENT_WRONG, err));
         }
     })
 }

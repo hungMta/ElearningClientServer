@@ -64,3 +64,24 @@ exports.searchCourse = (con, page, name, callback) => {
     })
 }
 
+exports.enrollCourse = (con, iduser, idcourse, callback) => {
+    var query = constants.INSERT_ENROLL + "VALUES (" + iduser + ", " + idcourse + ")"
+    db.queryDB(con, query, (err, rows) => {
+        callback(err, rows)
+    })
+}
+
+exports.quitCourse = (con, iduser, idcourse, callback) => {
+    var query = constants.QUIT_ENROLL + " where iduser = " + iduser + " and idcourse = " + idcourse
+    db.queryDB(con, query, (err, rows) => {
+        if (!err) {
+            query = constants.DELETE_PATHWAY + " where iduser = " + iduser + " and idcourse = " + idcourse
+            db.queryDB(con, query, (err, rows) => {
+                callback(err, rows)
+            })
+        } else {
+            callback(err, rows)
+        }
+    })
+}
+

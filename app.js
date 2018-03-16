@@ -28,6 +28,8 @@ app.get('/question',lessonClientController.getQuesion)
 app.get('/search_course',courseController.searchCourse)
 app.post('/save_pathway',pathwayController.savePathway)
 app.get('/course',courseController.courseDetail)
+app.put('/enroll',courseController.enrollCourse)
+app.put('/quit_course',courseController.quitCourse)
 app.post('/admin/login', adminController.login)
 
 app.get('/admin/courses',courseAdminController.coursesList);

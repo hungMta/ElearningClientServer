@@ -11,7 +11,9 @@ module.exports = Object.freeze({
     REGISTERD_SUCCESSFULLY: 'Registerd successfully',
     COUNT_COURSE:'select count(*) count from course',
     LIMIT: 20,
-
+    INSERT_ENROLL:'INSERT INTO `sql12225900`.`enroll` (`iduser`, `idcourse`) ',
+    QUIT_ENROLL:'DELETE FROM `sql12225900`.`enroll`',
+    DELETE_PATHWAY:'DELETE FROM `sql12225900`.`pathway`',
     SELECT_ALL_WORD:'select * from word',
     SELECT_ALL_LESSON:'select * from lesson',
     INSERT_PATHWAY:'INSERT INTO `sql12225900`.`pathway` (`iduser`, `idcourse`, `idlesson`, `score`)',
@@ -22,6 +24,7 @@ module.exports = Object.freeze({
     SELECT_ALL_LESSON_OF_COURSE: 'SELECT *FROM sql12225900.lesson WHERE idcourse =  ',
     BAD_REQUEST:'Bad request',
     SELECT_ALL_QUESTION:'select * from question',
+    SOME_THING_WENT_WRONG: 'sorry, something went wrong',
 
 
     // admin
