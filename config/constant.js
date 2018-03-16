@@ -12,7 +12,6 @@ module.exports = Object.freeze({
     COUNT_COURSE:'select count(*) count from course',
     LIMIT: 20,
 
-
     SELECT_ALL_WORD:'select * from word',
     SELECT_ALL_LESSON:'select * from lesson',
     INSERT_PATHWAY:'INSERT INTO `sql12225900`.`pathway` (`iduser`, `idcourse`, `idlesson`, `score`)',

@@ -2,7 +2,7 @@ var constant = require('../../../config/constant')
 var db = require('../../../database/dbconnection')
 
 exports.getQuestionInWord = (con, idword, callback) => {
-    var query = constant.SELECT_ALL_QUESTION + " where idword = " + idword
+    var query = constant.SELECT_ALL_QUESTION + " where idword = " + idword + " order by question.order asc "
     console.log("#### " + query);
     db.queryDB(con, query, (err, rows) => {
         callback(err, rows)

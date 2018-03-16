@@ -13,10 +13,21 @@ exports.getCoursesList = (con, page, callback) => {
     })
 }
 
-exports.courseDetail = (con, idcourse, callback) => {
-    var query = constants.SELECT_ALL_COURSE + " where course.idcourse = " + idcourse;
-    db.queryDB(con, query, (err, rows) => {
-        callback(err, rows);
+exports.courseDetail = (con, iduser, idcourse, callback) => {
+    var queryCourse = constants.SELECT_ALL_COURSES + " where idcourse = " + idcourse;
+    db.queryDB(con, queryCourse, (err, rowsCourse) => {
+        if (!err) {
+            var query = 'select all_lesson.idlesson,all_lesson.name,all_lesson.description,all_lesson.order,all_lesson.idcourse ,my_lesson.islearned'
+                + ' from (select * from lesson where idcourse = ' + idcourse + ') all_lesson  left join  '
+                + '( select idlesson, COALESCE(1,0) islearned from pathway where idcourse = ' + idcourse + ' and iduser = ' + iduser + ') my_lesson'
+                + ' on all_lesson.idlesson = my_lesson.idlesson'
+            db.queryDB(con, query, (err, rowsLesson) => {
+                rowsCourse.lessons = rowsLesson
+                callback(err, rowsCourse);
+            })
+        } else {
+            callback(err, null)
+        }
     })
 }
 
@@ -44,10 +55,11 @@ exports.searchCourse = (con, page, name, callback) => {
         offset = (page - 1) * constants.LIMIT;
         query = constants.SELECT_ALL_COURSES + " where name like'%" + name + "%'" + " limit " + constants.LIMIT + " offset " + offset
     }
-    db.queryDB(con,constants.COUNT_COURSE + " where name like'%" + name + "%'", (err, row1, fields) => {
+    db.queryDB(con, constants.COUNT_COURSE + " where name like'%" + name + "%'", (err, row1, fields) => {
         if (err) callback(err, null)
         db.queryDB(con, query, (err, rows) => {
             callback(err, row1[0].count, rows);
         })
     })
 }
+
