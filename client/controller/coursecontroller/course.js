@@ -22,8 +22,9 @@ exports.courseDetail = (con, iduser, idcourse, callback) => {
                 + '( select idlesson, COALESCE(1,0) islearned from pathway where idcourse = ' + idcourse + ' and iduser = ' + iduser + ') my_lesson'
                 + ' on all_lesson.idlesson = my_lesson.idlesson'
             db.queryDB(con, query, (err, rowsLesson) => {
-                rowsCourse.lessons = rowsLesson
-                callback(err, rowsCourse);
+                console.log(rowsLesson)
+                rowsCourse[0].lessons = rowsLesson
+                callback(err, rowsCourse[0]);
             })
         } else {
             callback(err, null)
