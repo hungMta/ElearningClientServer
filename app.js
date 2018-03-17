@@ -1,5 +1,6 @@
 var express = require('./lib/node_modules/express');
 var bodyParser = require('./lib/node_modules/body-parser');
+var cors = require('./lib/node_modules/cors')
 var courseController = require('./client/controller/coursecontroller/courseController');
 var lessonController = require('./admin/controller/lessoncontroller/lessoncontroller');
 var userController = require('./client/controller/usercontroller/userController');
@@ -12,6 +13,8 @@ var userAdminController = require('./admin/controller/usercontroller/userControl
 var lessonAdminController = require('./admin/controller/lessoncontroller/lessoncontroller');
 var PORT = process.env.PORT || 5000;
 var app = express();
+
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ extended: false }))
 
@@ -26,7 +29,12 @@ app.get('/lesson',lessonClientController.getLesson)
 app.get('/question',lessonClientController.getQuesion)
 app.get('/search_course',courseController.searchCourse)
 app.post('/save_pathway',pathwayController.savePathway)
-// admin
+
+app.get('/course',courseController.courseDetail)
+app.put('/enroll',courseController.enrollCourse)
+app.put('/quit_course',courseController.quitCourse)
+
+
 app.post('/admin/login', adminController.login)
 app.get('/admin/allusers',userAdminController.getAllUsers)
 app.delete('/admin/delete_user',userAdminController.deleteUser)

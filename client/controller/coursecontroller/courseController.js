@@ -8,9 +8,9 @@ var con = db.connection();
 exports.coursesList = (req, res) => {
     var page = req.query.page;
     console.log("courses list");
-    course.getCoursesList(con,page, function (err,total, rows) {
+    course.getCoursesList(con, page, function (err, total, rows) {
         if (!err) {
-            res.json(new pagination.Pagingation(total,constant.LIMIT,parseInt(page),rows));
+            res.json(new pagination.Pagingation(total, constant.LIMIT, parseInt(page), rows));
         }
         else {
             console.log(err);
@@ -22,9 +22,9 @@ exports.coursesList = (req, res) => {
 exports.searchCourse = (req, res) => {
     var page = req.query.page
     var name = req.query.name
-    course.searchCourse(con,page,name, function (err,total, rows) {
+    course.searchCourse(con, page, name, function (err, total, rows) {
         if (!err) {
-            res.json(new pagination.Pagingation(total,constant.LIMIT,parseInt(page),rows));
+            res.json(new pagination.Pagingation(total, constant.LIMIT, parseInt(page), rows));
         }
         else {
             console.log(err);
@@ -46,17 +46,48 @@ exports.myCourse = (req, res) => {
             }
         })
     } else {
-        // query from search course, do not need iduser
-        course.courseDetail(con, idcourse, (err, rows) => {
-            if (!err) {
-                if (rows.length > 0) {
-                    res.json(rows[0])
-                } else {
-                    res.status(404).json(new error.MyError(404, constant.COURSE_NOT_FOUND, err));
-                }
-            } else {
-                res.status(500).json(new error.MyError(500, constant.INTERNAL_SERVER_ERROR, err));
-            }
-        })
+        res.status(404).json(new error.MyError(404, constant.COURSE_NOT_FOUND, err));
     }
+}
+
+exports.courseDetail = (req, res) => {
+    var idcourse = req.query.id_course
+    var iduser = req.query.id_user
+    if (!iduser) {
+        iduser = 0
+    }
+    course.courseDetail(con, iduser, idcourse, (err, rows) => {
+        if (!err) {
+            res.json(rows)
+        } else {
+            res.status(404).json(new error.MyError(404, constant.COURSE_NOT_FOUND, err));
+        }
+    })
+}
+
+exports.enrollCourse = (req, res) => {
+    console.log("enroll")
+    var idcourse = req.query.id_course
+    var iduser = req.query.id_user
+    course.enrollCourse(con, iduser, idcourse, (err, rows) => {
+        if (!err) {
+            var result = { "result": "" + constant.SUCCESS + ""};
+            res.json(result)
+        } else {
+            res.status(500).json(new error.MyError(404, constant.SOME_THING_WENT_WRONG, err));
+        }
+    })
+}
+
+exports.quitCourse = (req,res) => {
+    var idcourse = req.query.id_course
+    var iduser = req.query.id_user
+    course.quitCourse(con, iduser, idcourse, (err, rows) => {
+        if (!err) {
+            var result = { "result": "" + constant.SUCCESS + ""};
+            res.json(result)
+        } else {
+            res.status(500).json(new error.MyError(404, constant.SOME_THING_WENT_WRONG, err));
+        }
+    })
 }
