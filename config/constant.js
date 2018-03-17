@@ -21,7 +21,7 @@ module.exports = Object.freeze({
     SUCCESS:"Success!",
     // SELECT_ALL_COURSE: 'SELECT * FROM sql12225900.course',
 
-    SELECT_ALL_LESSON_OF_COURSE: 'SELECT *FROM sql12225900.lesson WHERE idcourse =  ',
+    SELECT_ALL_LESSON_OF_COURSE: 'SELECT *FROM sql12225900.lesson WHERE idcourse = ? ',
     BAD_REQUEST:'Bad request',
     SELECT_ALL_QUESTION:'select * from question',
     SOME_THING_WENT_WRONG: 'sorry, something went wrong',
@@ -30,7 +30,7 @@ module.exports = Object.freeze({
     // admin
 
     SELECT_ALL_USERS: 'SELECT *FROM sql12225900.user',
-    DELETE_USER: 'DELETE sql12225900.user WHERE iduser =',
+    DELETE_USER: 'DELETE FROM sql12225900.user WHERE iduser =',
 
 
     SELECT_ALL_COURSES: 'SELECT * FROM sql12225900.course',
@@ -38,11 +38,23 @@ module.exports = Object.freeze({
     SELECT_ADMIN : 'SELECT *FROM sql12225900.admin',
     ADMIN_NOT_FOUND: 'Admin not found!',
 
-    INSERT_COURSE:'INSERT INTO  sql12225900.course(name,description,subcribers,image,totalTime) values',
-    UPDATE_COURSE:'UPDATE sql12225900.course SET',
-    DELETE_COURSE:'DELETE sql12225900.course WHERE',
+    INSERT_COURSE:'INSERT INTO sql12225900.course SET ?',
+    UPDATE_COURSE:'UPDATE sql12225900.course SET name=?, description=?, image=? WHERE idcourse=?',
+    DELETE_COURSE:'DELETE FROM sql12225900.course WHERE idcourse= ',
 
-    DELETE_LESSON: 'DELETE sql12225900.lesson WHERE idlesson='
+    INSERT_LESSON:'INSERT INTO sql12225900.lesson SET ?',
+    UPDATE_LESSON:' UPDATE sql12225900.lesson SET name=?, description=?, `order`=? WHERE idlesson=?',
+    DELETE_LESSON: 'DELETE FROM sql12225900.lesson WHERE idlesson=',
+
+    INSERT_WORD: 'INSERT INTO sql12225900.word SET ?',
+    UPDATE_WORD:'UPDATE sql12225900.word SET enWord=?, vnWord=?, enMeaning=?, vnMeaning=?, audio=?, image=?, order=?, type=? WHERE idword=?',
+    DELETE_WORD: 'DELETE FROM sql12225900.word WHERE idword=?',
+
+    INSERT_QUESTION: 'INSERT INTO sql12225900.question SET ?',
+    UPDATE_QUESTION:'UPDATE sql12225900.question SET title=?, type=?, answerA=?, answerB=?, answerC=?, answerD=?, answer=?,audio=?, order=? WHERE idquestion=?',
+    DELETE_QUESTION: 'DELETE FROM sql12225900.question WHERE idquestion=?'
+
+
 
 
 });
