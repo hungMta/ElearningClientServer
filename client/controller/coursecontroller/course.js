@@ -14,7 +14,17 @@ exports.getCoursesList = (con, page, callback) => {
 }
 
 exports.courseDetail = (con, iduser, idcourse, callback) => {
-    var queryCourse = constants.SELECT_ALL_COURSES + " where idcourse = " + idcourse;
+    // var queryCourse = constants.SELECT_ALL_COURSE_CLIENT + " where idcourse = " + idcourse;
+    var queryCourse = "select my_course.idcourse,my_course.name,my_course.image,"
+        + "my_course.description, my_course.number,coalesce( my_enroll.is_enroll,0) is_enroll "
+        + "from (select course.idcourse, course.name, course.image,course.description ,coalesce(t1.number,0) number "
+        + " from (select count(iduser) as number  ,idcourse from enroll group by idcourse) t1 "
+        + " right join course on course.idcourse = t1.idcourse  where t1.idcourse = " + idcourse + ") my_course"
+        + " left join "
+        + " (select  iduser,idcourse, count(idenroll) is_enroll from enroll where iduser = " + iduser + " and idcourse = " + idcourse + ") "
+        + " my_enroll "
+        + " on "
+        + " my_course.idcourse = my_enroll.idcourse "
     db.queryDB(con, queryCourse, (err, rowsCourse) => {
         if (!err) {
             var query = 'select all_lesson.idlesson,all_lesson.name,all_lesson.description,all_lesson.order,all_lesson.idcourse ,my_lesson.islearned'
