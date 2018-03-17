@@ -46,7 +46,7 @@ exports.myCourse = (req, res) => {
             }
         })
     } else {
-        res.status(404).json(new error.MyError(404, constant.COURSE_NOT_FOUND, err));
+        res.status(404).json(new error.MyError(404, constant.COURSE_NOT_FOUND));
     }
 }
 
