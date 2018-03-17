@@ -13,7 +13,7 @@ var userAdminController = require('./admin/controller/usercontroller/userControl
 var lessonAdminController = require('./admin/controller/lessoncontroller/lessoncontroller');
 var PORT = process.env.PORT || 5000;
 var app = express();
-
+cors({credentials: true, origin: true})
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ extended: false }))
