@@ -15,18 +15,18 @@ exports.getAllUsers = (req, res) => {
 }
 exports.deleteUser = (req,res)=>
 {
-    var iduser = req.body.iduser;
+    var iduser = req.params.iduser;
     console.log("delete User");
-    console.log(iduser);
+    const a = iduser;
     user.deleteUser(con,iduser,(err,rows)=>
 {
     if(!err)
     {
-        res.json('Record has been deleted!')
+        res.json({message:`User ${a} delete.`});
     }
     else 
     {
         res.status(401).json(new error.MyError(401, "Failed!!!"));
     }
-})
+});
 }

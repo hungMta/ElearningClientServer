@@ -48,11 +48,12 @@ exports.updateCourse =(req, res) =>{
 exports.deleteCourse = (req,res) =>
 {
     console.log("delete course");
-    course.deleteCourse(con,req.body.idcourse,function(err,rows){
+    const idcourse = req.params.idcourse;
+    course.deleteCourse(con,idcourse,function(err,rows){
         console.log(rows);
         if(!err)
         {
-            res.json(rows);
+            res.json({message:`Course ${idcourse} delete.`});
         }
         else{
             res.status(500).send("Oh uh, something went wrong!");

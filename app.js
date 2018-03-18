@@ -37,16 +37,16 @@ app.put('/quit_course',courseController.quitCourse)
 
 app.post('/admin/login', adminController.login)
 app.get('/admin/allusers',userAdminController.getAllUsers)
-app.delete('/admin/delete_user',userAdminController.deleteUser)
+app.delete('/admin/delete_user/:iduser',userAdminController.deleteUser)
 
 app.get('/admin/courses',courseAdminController.coursesList)
 app.post('/admin/insert_course',courseAdminController.insertCourse)
-app.delete('/admin/delete_course',courseAdminController.deleteCourse)
+app.delete('/admin/delete_course/:idcourse',courseAdminController.deleteCourse)
 app.put('/admin/update_course',courseAdminController.updateCourse)
 
 app.get('/admin/lesson',lessonAdminController.lessonList)
 app.put('/admin/update_lesson',lessonAdminController.updateLesson)
-app.delete('/admin/delete_lesson',lessonAdminController.deleteLesson)
+app.delete('/admin/delete_lesson/:idlesson',lessonAdminController.deleteLesson)
 app.post('/admin/insert_lesson',lessonAdminController.insertLesson)
 
 //app.get('/lessons', lessonController.lessonController);
