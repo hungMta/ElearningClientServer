@@ -6,7 +6,7 @@ exports.getCoursesList = (con, page, callback) => {
         if (err) console.log(err);
         console.log('###### ' + row1)
         var offset = (page - 1) * constants.LIMIT;
-        var query = constants.SELECT_ALL_COURSE + " limit " + constants.LIMIT + " offset " + offset
+        var query = constants.SELECT_ALL_COURSE_CLIENT + " limit " +constants.LIMIT+ " offset " + offset
         db.queryDB(con, query, (err, rows) => {
             callback(err, row1[0].count, rows);
         })
