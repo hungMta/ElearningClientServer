@@ -48,12 +48,13 @@ exports.updateLesson =(req, res) =>{
 }
 exports.deleteLesson = (req,res) =>
 {
+    const idlesson = req.params.idlesson
     console.log("delete Lesson");
-    lesson.deleteLesson(con,req.body.idlesson,function(err,rows){
+    lesson.deleteLesson(con,idlesson,function(err,rows){
         console.log(rows);
         if(!err)
         {
-            res.json(rows);
+            res.json({message:`Lesson ${idlesson} delete.`});
         }
         else{
             res.status(500).send("Oh uh, something went wrong!");

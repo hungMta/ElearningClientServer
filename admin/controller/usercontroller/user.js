@@ -10,9 +10,12 @@ exports.getAllUser = (con, callback) => {
 }
 
 exports.deleteUser = (con, iduser, callback) => {
-    var query = constant.DELETE_USER + "'" +iduser+"'"
-    console.log("=========" + query)
-    db.queryDB(con, query, (err, row) => {
-        callback(err, row)
-    })
+    con.query(constant.DELETE_USER + "'" + iduser + "'", function (err, rows, fields) {
+        if (err) {
+            console.log(err);
+        }
+        console.log(rows);
+        callback(err, rows);
+
+    });
 }

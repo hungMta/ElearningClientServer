@@ -37,9 +37,10 @@ exports.deleteCourse = (con, idcourse) => {
     con.query(constants.DELETE_COURSE + "'"+idcourse +"'", function (err, rows, fields) {
         if (err) {
             console.log(err);
+        }
             console.log(rows);
             callback(err, rows);
-        }
+        
     });
 }
 
