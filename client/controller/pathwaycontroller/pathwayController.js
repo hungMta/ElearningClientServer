@@ -10,7 +10,7 @@ exports.savePathway = (req,res) => {
         if(!err){
             res.json(constant.SUCCESS)
         }else{
-            res.status(400).json(new error.MyError(400,null,error))
+            res.status(400).json(new error.MyError(400,null,err))
         }
     })
 }

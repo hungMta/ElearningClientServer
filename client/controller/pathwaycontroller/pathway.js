@@ -7,7 +7,7 @@ exports.savePathway = (con, pathway, callback) => {
     getPathway(con, pathway, (err, rows) => {
         if (!err) {
             if (rows.length > 0) {
-                query = "UPDATE `sql12225900`.`pathway` SET `score`=" + pathway.score + " WHERE `idpathway`=" + rows[0].idpathway
+                query = "UPDATE `pathway` SET `score`=" + pathway.score + " WHERE `idpathway`=" + rows[0].idpathway
             }
             db.queryDB(con, query, (err, rows) => {
                 callback(err, rows)
